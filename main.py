@@ -1,6 +1,6 @@
 import sqlite3
-
 from datetime import datetime
+
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.clock import Clock
@@ -11,11 +11,11 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.relativelayout import RelativeLayout
-from kivy.uix.screenmanager import Screen
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 from kivy.uix.videoplayer import VideoPlayer
+
 
 # Класс главного экрана
 class MainScreen(Screen):
@@ -26,14 +26,14 @@ class MainScreen(Screen):
         Window.clearcolor = (1, 1, 1, 1)  # Белый цвет фона
 
         # Добавляем фоновое изображение
-        self.background = Image(source='C:/C_imlesii/Учёба/Диплом/pythonProject1/HealthApp/fonn.jpg',
+        self.background = Image(source='fon/fonn.jpg',
                                 allow_stretch=True, keep_ratio=False)
         self.add_widget(self.background)
 
         # Добавляем надпись на экран приветствия
         self.welcome_label = Label(text="Добро пожаловать в приложение \n        для ментального здоровья \n                   TranquilMind!",
                                    color=(0, 0, 0, 1), size_hint=(None, None), size=(Window.width, Window.height),
-                                   font_name="fonts/ofont.ru_Chekharda.ttf", font_size=50)
+                                   font_name="fonts/Chekharda-BoldItalic.ttf", font_size=50)
         self.add_widget(self.welcome_label)
 
         # Запускаем таймер для исчезновения надписи через 3 секунды
@@ -52,7 +52,7 @@ class MainScreen(Screen):
         Window.clearcolor = (1, 1, 1, 1)  # Белый цвет фона
 
         # Добавляем фоновое изображение
-        self.background = Image(source='C:/C_imlesii/Учёба/Диплом/pythonProject1/HealthApp/fonbut.jpg',
+        self.background = Image(source='fon/fonbut.jpg',
                                 allow_stretch=True, keep_ratio=False)
         self.add_widget(self.background)
 
@@ -110,7 +110,7 @@ class MeditationSelectionScreen(Screen):
         Window.clearcolor = (1, 1, 1, 1)  # Белый цвет фона
 
         # Добавляем фоновое изображение
-        self.background = Image(source='C:/C_imlesii/Учёба/Диплом/pythonProject1/HealthApp/fonbut.jpg',
+        self.background = Image(source='fon/fonbut.jpg',
                                 allow_stretch=True, keep_ratio=False)
         self.add_widget(self.background)
 
@@ -188,7 +188,7 @@ class MindfulnessScreen(Screen):
         Window.clearcolor = (1, 1, 1, 1)  # Белый цвет фона
 
         # Добавляем фоновое изображение
-        self.background = Image(source='C:/C_imlesii/Учёба/Диплом/pythonProject1/HealthApp/fontxt.jpg',
+        self.background = Image(source='fon/fontxt.jpg',
                                 allow_stretch=True, keep_ratio=False)
         self.add_widget(self.background)
 
@@ -242,7 +242,7 @@ class TranscendentalMeditationScreen(Screen):
         Window.clearcolor = (1, 1, 1, 1)  # Белый цвет фона
 
         # Добавляем фоновое изображение
-        self.background = Image(source='C:/C_imlesii/Учёба/Диплом/pythonProject1/HealthApp/fontxt.jpg',
+        self.background = Image(source='fon/fontxt.jpg',
                                 allow_stretch=True, keep_ratio=False)
         self.add_widget(self.background)
 
@@ -297,7 +297,7 @@ class VipassanaScreen(Screen):
         Window.clearcolor = (1, 1, 1, 1)  # Белый цвет фона
 
         # Добавляем фоновое изображение
-        self.background = Image(source='C:/C_imlesii/Учёба/Диплом/pythonProject1/HealthApp/fontxt.jpg',
+        self.background = Image(source='fon/fontxt.jpg',
                                 allow_stretch=True, keep_ratio=False)
         self.add_widget(self.background)
 
@@ -407,12 +407,8 @@ class MoodTrackingScreen(Screen):
             text="Отслеживание настроения — это важная часть заботы о своем эмоциональном благополучии. "
                  "Записывайте свое настроение каждый день, "
                  "чтобы вы могли увидеть, как оно меняется со временем.",
-            font_size=26,
-            font_name="fonts/ofont.ru_Dudka.ttf",
-            color=(0, 0, 0, 1),
-            text_size=(Window.width - 60, None),
-            halign='center',
-            valign='middle',
+            font_size=26, font_name="fonts/ofont.ru_Dudka.ttf", color=(0, 0, 0, 1), text_size=(Window.width - 60, None),
+            halign='center', valign='middle',
         )
         layout.add_widget(title_label)
 
@@ -560,7 +556,7 @@ class ViewMoodDataScreen(Screen):
                                    font_name="fonts/ofont.ru_Dudka.ttf", color=(0, 0, 0, 1))
 
                 # Label для заметок
-                note_label = Label(text=row[2], font_size=20, size_hint=(0.6, None), height=40,
+                note_label = Label(text=row[2] or "", font_size=20, size_hint=(0.6, None), height=40,
                                    font_name="fonts/ofont.ru_Dudka.ttf", color=(0, 0, 0, 1))
 
                 self.data_layout.add_widget(date_label)
@@ -603,7 +599,7 @@ class HealthApp(App):
         vipassana_screen = VipassanaScreen(name="vipassana_screen")
         sm.add_widget(vipassana_screen)
 
-        # Добавляем экран просмотра видео
+        # Добавляем экран с видео
         breathing_exercises_screen = BreathingExercisesScreen(name="breathing_exercises_screen")
         sm.add_widget(breathing_exercises_screen)
 
